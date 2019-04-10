@@ -24,5 +24,15 @@ module.exports = {
     newAnimal.id = id++
     animals.push(newAnimal)
     res.send(animals)
+  },
+
+  update: (req, res) => {
+    let {id} = req.params
+    let updatedAnimal = req.body
+    updatedAnimal.id = id
+
+    let index = animals.find(a => +a.id === +id)
+    animals.splice(index, 1, updatedAnimal)
+    res.send(animals)
   }
 }
